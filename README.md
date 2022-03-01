@@ -1,10 +1,10 @@
 # Rego
 REGO: A Cross-platform Mobile Application for Reading Research Papers on the Go
 
-#Motivation
+# Motivation
 In the current world, people have turned to mobile applications as a means of accessing dedicated and curated information. Mobile apps are the new gateway to information and resources on the internet. REGO is an app visioned for research scientists and science enthusiasts, to keep them up to date with the latest developments in the scientific world by giving them access to research papers on PubMed. 
 
-#Features and functionality
+# Features and functionality
 - User Authentication (Signup & Login)
 - Search for papers
 - Read papers
