@@ -38,6 +38,7 @@ const publicationSchema = new Schema({
 const bookmarkSchema = new Schema({
     userId: String,
     pmid: String,
+    pmc: String,
 })
 
 export {userSchema, bookmarkSchema, publicationSchema}

@@ -1,0 +1,47 @@
+type User {
+    _id: ID
+    name: String
+    email: String
+    password: String
+    token: String
+    active: Boolean
+    hold: Boolean
+}
+
+type Publication {
+    _id: ID
+    title: String
+    pmid: String
+    pmc: String
+}
+
+type Bookmark {
+    _id: ID
+    userId: String
+    pmid: String
+    pmc: String
+}
+
+input UserInput {
+    _id: ID
+    name: String
+    email: String
+    password: String
+    token: String
+    active: Boolean
+    hold: Boolean
+}
+
+input PublicationInput {
+    _id: ID
+    title: String
+    pmid: String
+    pmc: String
+}
+
+input BookmarkInput {
+    _id: ID
+    title: String
+    pmid: String
+    pmc: String
+}
