@@ -1,0 +1,21 @@
+{
+  "silentMode": true,
+  "logFile": "entrez_search.log",
+  "logFormat": "%(asctime)s %(levelname)s %(message)s",
+  "baseUrl": {
+    "search": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+    "fetch": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+    "summary": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
+  },
+  "searchParams": {
+    "db": "pubmed",
+    "term": "AI",
+    "retmode": "json",
+    "rettype": "json",
+    "retmax": 1000,
+    "usehistory": "y"
+  },
+  "accessionsFile": "../accessions/pubmed_ids.txt",
+  "fileTag": "ai"
+
+}
