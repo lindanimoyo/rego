@@ -1,6 +1,7 @@
 {
   "silentMode": true,
-  "logFile": "entrez_search.log",
+  "searchLog": "entrez_search.log",
+  "summaryLog": "entrez_summary.log",
   "logFormat": "%(asctime)s %(levelname)s %(message)s",
   "baseUrl": {
     "search": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
@@ -16,6 +17,8 @@
     "usehistory": "y"
   },
   "accessionsFile": "../accessions/pubmed_ids.txt",
-  "fileTag": "ai"
+  "fileTag": "ai",
+  "summaryTag": "summary",
+  "summaryFile": "../data/summary.json"
 
 }

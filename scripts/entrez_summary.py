@@ -1,7 +1,7 @@
 """
-The script contains functions that implement an entrez search utility on
+The file contains functions that perform an entrez
 
-ncbi databases
+summary retrieval of specified PMIDs from ncbi databases
 """
 
 import json
@@ -11,15 +11,11 @@ from requests.exceptions import HTTPError
 from os.path import exists
 
 """
-Read script configuration from the config file.
-
-Ensure that the config file is in the same directory 
-
-as this file that reads from it or provide an 
-
-appropriate path to it
+Assert that the config file exists and read
+from it
 
 """
+
 
 assert exists('config.json'), 'Ensure that the config.json file is in the ' \
                               'same directory as this file that reads from ' \
@@ -28,19 +24,27 @@ assert exists('config.json'), 'Ensure that the config.json file is in the ' \
 with open('config.json', 'r') as file:
     config = json.loads(file.read())
 
-# Set up basic logging configuration to handle std_out events
+# set up basic logging configurations to handle std output logs
+
 logging.basicConfig(
     level=logging.INFO,
-    filename=config['searchLog'] if config['silentMode'] else None,
+    filename=config['summaryLog'] if config['silentMode'] else None,
     format=config['logFormat'],
 )
 
 
-def search():
+def summary():
     """
-    The function executes an NCBI database search functionality
-    based on the configuration in the config json file
+    The function performs a retrieval of summaries to
+    publications specified in already obtained PMIDs
+
+    :return:
     """
+    def get_pubmed_id_list(id_file):
+        assert exists(id_file), 'The PMIDs file provided does not exist'
+        with open(id_file, 'r') as pm:
+            pubmed_ids = pm.read()
+            return pubmed_ids.replace('\n', ' ')
 
     def output_to_file(tag, output_file, content):
         """
@@ -55,24 +59,23 @@ def search():
         split_file = str(output_file).rsplit('/', maxsplit=1)
         tagged_file = f"{split_file[0]}/{tag}_{split_file[1]}"
         with open(tagged_file, 'w') as out:
-            for cont in content:
-                out.write(f'{cont}\n')
+            out.write(content)
 
     try:
         """
-        Try sending a request to ncbi, if the request executes successfully,
-        the program runs silently, else it raises an a detailed exception
-        or error on why it was unsuccessful
-        
-        The parameters used for the request are the ones set in the config file,
-        ensure you customise the file to suit your needs
+        Modify the search parameters to include the PMIDs for
+        which we want to retrieve summaries for and then send a 
+        request to ncbi
         """
-        logging.info('Searching ncbi')
-        handles = requests.post(config['baseUrl']['search'], data=config['searchParams'])
+        summary_params = dict(config['searchParams'])
+        summary_params["id"] = get_pubmed_id_list('../accessions/pubmed_ids.txt')
+        logging.info("Retrieving Summary")
+        handles = requests.post(config['baseUrl']['summary'], data=summary_params)
 
-        # write the resulting accessions or pubmed ids to a file
-        output_to_file(config['fileTag'], config['accessionsFile'], handles.json()['esearchresult']['idlist'])
+        # write the resulting publication summaries to a file
+        output_to_file(config['summaryTag'], config['summaryFile'], handles.text)
         handles.raise_for_status()  # only executed on request failure
+
     except HTTPError as http_error:
         """
         Raises an http error if the the request fail is associated with 
@@ -96,4 +99,4 @@ def search():
 
 
 if __name__ == '__main__':
-    search()
+    summary()
