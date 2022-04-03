@@ -2,7 +2,7 @@ const INITIAL_STATE = {
 	colors: {
 		button: '#ff0',
 		background: '#fff',
-		statusBar: '#000',
+		statusBar: '#008',
 		text: '#000'
 	},
 	fonts: {

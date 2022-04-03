@@ -16,18 +16,18 @@ function CustomTabBar(props){
 		const activeTabIndex = state.index;
 		if (key ===  'publications'){
 			if (state.routes[activeTabIndex].key === 'publications'){
-				return {'name':'home',
+				return {'name':'book',
 					'size' : 25,
 					'color': props.app.colors.background,
-					'label': 'publications',
+					'label': 'Publications',
 					'active': true
 				}
 			}
 			else {
-				return {'name':'home-outline',
+				return {'name':'book-outline',
 					'size' : 25,
 					'color': props.app.colors.statusBar,
-					'label': 'publications',
+					'label': 'Publications',
 					'active': false
 				}
 			}
@@ -37,7 +37,7 @@ function CustomTabBar(props){
 				return {'name':'search',
 					'size' : 28,
 					'color': props.app.colors.background,
-					'label': 'search',
+					'label': 'Search',
 					'active': true
 				}
 			}
@@ -45,25 +45,25 @@ function CustomTabBar(props){
 				return {'name':'search',
 					'size' : 25,
 					'color': props.app.colors.statusBar,
-					'label': 'search',
+					'label': 'Search',
 					'active': false
 				}
 			}
 		}
 		else if (key === 'account'){
 			if (state.routes[activeTabIndex].key === 'account'){
-				return {'name':'account',
-					'size' : 32,
+				return {'name':'person',
+					'size' : 25,
 					'color': props.app.colors.background,
-					'label': 'account',
+					'label': 'Account',
 					'active': true
 				}
 			}
 			else {
-				return {'name':'account',
-					'size' : 32,
+				return {'name':'person-outline',
+					'size' : 25,
 					'color': props.app.colors.statusBar,
-					'label': 'account',
+					'label': 'Account',
 					'active': false
 				}
 			}
@@ -118,8 +118,9 @@ function CustomTabBar(props){
 										color: getIcon(elements.key).color,
 										margin: 5,
 										marginRight: 15,
-										fontWeight: 'bold',
-										fontSize: 17
+										// fontWeight: 'bold',
+										fontSize: 18,
+										fontFamily: props.app.fonts.bold
 									}}>
 										{getIcon(elements.key).label}
 									</Text>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {LogBox} from "react-native";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import rootReducer from "./state/index"
@@ -11,6 +12,11 @@ import Signup from "./screens/signup";
 import {Router, Scene, Lightbox, Tabs} from "react-native-router-flux";
 import CustomTabBar from "./components/tab";
 
+LogBox.ignoreLogs([
+	"[react-native-gesture-handler]",
+	"Deprecation in 'createStackNavigator':",
+	"Deprecation in 'navigationOptions':"
+])
 function App(){
 	const store = createStore(rootReducer);
 	const client = new ApolloClient({
