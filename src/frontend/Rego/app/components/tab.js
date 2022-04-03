@@ -6,6 +6,8 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Actions} from "react-native-router-flux";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
 function CustomTabBar(props){
 	const {state} = props.navigation;
@@ -131,4 +133,14 @@ function CustomTabBar(props){
 	)
 }
 
-export default CustomTabBar;
+const mapStateToProps = state => {
+	const {app} = state;
+	return {app}
+}
+
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({
+	}, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomTabBar)

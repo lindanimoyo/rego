@@ -4,6 +4,8 @@ import {
 	TouchableOpacity,
 	Text
 } from "react-native";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
 function Account(props) {
 	return(
@@ -20,4 +22,15 @@ function Account(props) {
 	)
 }
 
-export default Account;
+
+const mapStateToProps = state => {
+	const {app} = state;
+	return {app}
+}
+
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({
+	}, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account)
