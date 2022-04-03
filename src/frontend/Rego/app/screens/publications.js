@@ -5,7 +5,7 @@ import {
 	Text
 } from "react-native";
 
-function Home(props) {
+function Publications(props) {
 	return(
 		<>
 			<View
@@ -19,3 +19,5 @@ function Home(props) {
 		</>
 	)
 }
+
+export default Publications;
