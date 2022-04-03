@@ -35,7 +35,7 @@ function CustomTabBar(props){
 		else if (key === 'search'){
 			if (state.routes[activeTabIndex].key === 'search'){
 				return {'name':'search',
-					'size' : 28,
+					'size' : 25,
 					'color': props.app.colors.background,
 					'label': 'Search',
 					'active': true
