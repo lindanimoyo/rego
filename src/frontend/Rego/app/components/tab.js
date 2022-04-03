@@ -2,7 +2,8 @@ import * as React from 'react';
 import {
 	View,
 	TouchableOpacity,
-	Text
+	Text,
+	useWindowDimensions
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Actions} from "react-native-router-flux";
@@ -11,6 +12,7 @@ import {connect} from "react-redux";
 
 function CustomTabBar(props){
 	const {state} = props.navigation;
+	const {width, height} = useWindowDimensions();
 	function getIcon(key){
 		const {state} = props.navigation;
 		const activeTabIndex = state.index;
@@ -77,14 +79,15 @@ function CustomTabBar(props){
 			left: 0
 		}}>
 			<View style={{
-				margin: 20,
-				marginLeft: 40,
-				marginRight: 40,
+				alignSelf: 'center',
+				width: '80%',
+				bottom: height * 0.03,
 				flexDirection: 'row',
 				justifyContent: 'space-evenly',
-				height: 60,
+				minHeight: 60,
+				height: height * 0.1,
 				backgroundColor: '#ffffff',
-				borderRadius: 30,
+				borderRadius: height * 0.1,
 				elevation: 10
 			}}>
 				{

@@ -73,6 +73,7 @@ function PubCard(props){
 				>
 					<View
 						style={{
+							minHeight: 50,
 							height: props.height * 0.08,
 							backgroundColor: '#ff0092',
 							width: '30%',
@@ -102,6 +103,7 @@ function PubCard(props){
 					</View>
 					<View
 						style={{
+							minHeight: 50,
 							height: props.height * 0.08,
 							backgroundColor: '#5f5',
 							width: '50%',
@@ -180,7 +182,7 @@ function Publications(props) {
 	function _footerComponent(){
 		return(
 			<>
-				<View style={{ margin: 50}}/>
+				<View style={{ margin: height * 0.1}}/>
 			</>
 		)
 	}
