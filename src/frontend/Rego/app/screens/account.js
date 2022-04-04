@@ -12,7 +12,7 @@ function Account(props) {
 		<>
 			<View
 				style={{
-					backgroundColor: '#fff',
+					backgroundColor: '#004',
 					flex:1
 				}}
 			>

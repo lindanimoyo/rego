@@ -109,7 +109,7 @@ function PubCard(props){
 							height: props.height * 0.08,
 							backgroundColor: '#5f5',
 							width: '50%',
-							elevation: 10,
+							elevation: 5,
 							justifyContent: 'center',
 							alignSelf: 'flex-end',
 							padding: 0,
@@ -161,20 +161,21 @@ function Publications(props) {
 					style={{
 						flexDirection: 'row',
 						alignItems: "center",
+						justifyContent: 'center'
 					}}
 				>
 					<Text
 						style={{
 							fontFamily: props.app.fonts.bold,
-							fontSize: 35,
-							color: '#00f',
+							fontSize: 25,
+							color: '#fff',
 							margin: 20,
 							marginBottom: 50,
 							marginTop: 50,
-							// textAlign: 'right'
+							textAlign: 'center'
 						}}
 					>
-						Publications
+						Editor's choice
 					</Text>
 				</View>
 			</>

@@ -18,18 +18,18 @@ function CustomTabBar(props){
 		const activeTabIndex = state.index;
 		if (key ===  'publications'){
 			if (state.routes[activeTabIndex].key === 'publications'){
-				return {'name':'book',
+				return {'name':'home',
 					'size' : 25,
 					'color': props.app.colors.background,
-					'label': 'Publications',
+					'label': 'Home',
 					'active': true
 				}
 			}
 			else {
-				return {'name':'book-outline',
+				return {'name':'home-outline',
 					'size' : 25,
 					'color': props.app.colors.statusBar,
-					'label': 'Publications',
+					'label': 'Home',
 					'active': false
 				}
 			}
@@ -98,7 +98,7 @@ function CustomTabBar(props){
 								alignItems: 'center',
 								flexDirection: 'row',
 								borderRadius: 50,
-								margin: 6,
+								margin: 10,
 								borderWidth:getIcon(elements.key).active ? 0 : 0,
 								borderColor: null,
 								elevation: getIcon(elements.key).active ?
@@ -113,7 +113,7 @@ function CustomTabBar(props){
 								size={getIcon(elements.key).size}
 								color={getIcon(elements.key).color}
 								name={getIcon(elements.key).name}
-								style={{ margin: 5}}
+								style={{ margin: 7}}
 							/>
 							{
 								getIcon(elements.key).active ?
