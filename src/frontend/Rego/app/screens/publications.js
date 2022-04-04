@@ -75,7 +75,7 @@ function PubCard(props){
 						style={{
 							minHeight: 50,
 							height: props.height * 0.08,
-							backgroundColor: '#ff0092',
+							backgroundColor: '#fff',
 							width: '30%',
 							justifyContent: 'center',
 							// alignSelf: 'flex-end',
@@ -85,11 +85,13 @@ function PubCard(props){
 							marginTop: 30,
 							marginBottom: 10,
 							margin: 10,
-							elevation: 10,
+							borderWidth: 2,
+							borderColor: '#ff0092'
+							// elevation: 10,
 						}}
 					>
 						<Pressable
-							android_ripple={{borderless: true, color: '#000'}}
+							android_ripple={{borderless: true, color: '#ff0092'}}
 							style={{
 								//
 							}}
@@ -97,7 +99,7 @@ function PubCard(props){
 							<Ionicons
 								name={'heart'}
 								size={40}
-								color={'#fff'}
+								color={'#ff0092'}
 							/>
 						</Pressable>
 					</View>
