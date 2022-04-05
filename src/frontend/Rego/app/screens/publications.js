@@ -12,6 +12,13 @@ import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 function PubCard(props){
+	function _formatNames(authors){
+		let nameList = []
+		authors.map(name => {
+			nameList.push(name.name)
+		})
+		return nameList.join(', ')
+	}
 	return(
 		<>
 			<Pressable
@@ -45,12 +52,12 @@ function PubCard(props){
 							marginTop: 10,
 						}}
 					>
-						REGO: A Cross-platform Mobile Application for Reading Research Papers on the Go
+						{props.summary.title}
 					</Text>
 				</View>
 				<View style={{ flexDirection: 'row', alignItems: 'center'}}>
 					<Text
-						numberOfLines={2}
+						numberOfLines={3}
 						style={{
 							fontFamily: props.app.fonts.light,
 							fontSize: 17,
@@ -60,7 +67,7 @@ function PubCard(props){
 							flex: 1
 						}}
 					>
-						Mudaki Wilson, Dele-Alimi Temiloluwa, Julius Mwakosya
+						{_formatNames(props.summary.authors)}
 					</Text>
 					<Ionicons name={'people'} size={35} color={'#f00'} style={{ flex: 0.15, margin: 10}}/>
 				</View>
@@ -147,10 +154,80 @@ function PubCard(props){
 function Publications(props) {
 	const {width, height} = useWindowDimensions();
 	StatusBar.setBackgroundColor('#004')
+	const [publicationsIDs, setPublicationIDs] = React.useState([]);
+	const [publicationSummary, setPublicationSummary] = React.useState({});
+	const [loading, setLoading] = React.useState(false);
+
+	function getPublications(){
+		setLoading(true);
+		let params =
+			{
+				db: "pubmed",
+				term: "human",
+				retmode: "json",
+				rettype: "json",
+				retmax: 20,
+				usehistory: "y"
+			}
+		let endPoint =
+			`https://eutils.ncbi.nlm.nih.gov/
+			entrez/eutils/esearch.fcgi?
+			db=${params.db}&term=${params.term}&retmode=${params.retmode}
+			&rettype=${params.rettype}&usehistory=y`
+
+
+		return fetch(endPoint)
+			.then((response) => response.json())
+			.then(handle => {
+				setPublicationIDs(handle.esearchresult.idlist)
+				getTitles(handle.esearchresult.webenv, handle.esearchresult.querykey)
+			})
+			.catch(err => {
+				console.log('err', err)
+			})
+	}
+
+	function getTitles(webenv, queryKey) {
+		let params =
+			{
+				db: "pubmed",
+				term: "human",
+				retmode: "json",
+				rettype: "json",
+				retmax: 20,
+				usehistory: "y"
+			}
+		let endpoint =
+			`https://eutils.ncbi.nlm.nih.gov/
+			entrez/eutils/esummary.fcgi?
+			db=${params.db}&WebEnv=${webenv}&query_key=${queryKey}&retmode=${params.retmode}
+			&rettype=${params.rettype}&usehistory=y&retmax=${params.retmax}`
+
+		return fetch(endpoint)
+			.then((response) => response.json())
+			.then(handle => {
+				setPublicationSummary(handle.result);
+				setLoading(false)
+			})
+			.catch(err => {
+				console.log('err', err)
+			})
+	}
+
+	React.useEffect(() => {
+		getPublications();
+	}, [])
+
 	function _renderItem(item){
 		return(
 			<>
-				<PubCard {...props} width={width} height={height}/>
+				<PubCard
+					{...props}
+					width={width}
+					height={height}
+					pmid={item.item}
+					summary={publicationSummary[item.item]}
+				/>
 			</>
 		)
 	}
@@ -197,12 +274,16 @@ function Publications(props) {
 					flex:1
 				}}
 			>
-				<FlatList
-					data={[1,2,3,4,5,6]}
-					renderItem={_renderItem}
-					ListHeaderComponent={_headerComponent}
-					ListFooterComponent={_footerComponent}
-				/>
+				{
+					loading
+					? null
+					: <FlatList
+							data={publicationsIDs}
+							renderItem={_renderItem}
+							ListHeaderComponent={_headerComponent}
+							ListFooterComponent={_footerComponent}
+						/>
+				}
 			</View>
 		</>
 	)

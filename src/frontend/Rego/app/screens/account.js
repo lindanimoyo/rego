@@ -41,7 +41,6 @@ function Profile(props){
 				>
 					Wilson Mudaki
 				</Text>
-
 			</View>
 		</>
 	)
@@ -52,7 +51,7 @@ function Account(props) {
 	const [previousPos, setPreviousPos] = React.useState(0)
 	const [counter, setCounter] = React.useState(0)
 
-	const handle_scroll = (event) => {
+	const _handleScroll = (event) => {
 		console.log('event',counter, event.nativeEvent.contentOffset.y)
 		if (counter === 0){
 			setPreviousPos(event.nativeEvent.contentOffset.y)
@@ -133,7 +132,7 @@ function Account(props) {
 					renderItem={_renderItem}
 					ListHeaderComponent={_headerComponent}
 					ListFooterComponent={_footerComponent}
-					onScroll={handle_scroll}
+					onScroll={_handleScroll}
 				/>
 
 			</View>
