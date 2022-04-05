@@ -52,7 +52,7 @@ function PubCard(props){
 							marginTop: 10,
 						}}
 					>
-						{props.summary.title}
+						{props.summary ? props.summary.title : "Publication Title"}
 					</Text>
 				</View>
 				<View style={{ flexDirection: 'row', alignItems: 'center'}}>
@@ -67,7 +67,7 @@ function PubCard(props){
 							flex: 1
 						}}
 					>
-						{_formatNames(props.summary.authors)}
+						{props.summary ? _formatNames(props.summary.authors): 'Publication authors'}
 					</Text>
 					<Ionicons name={'people'} size={35} color={'#f00'} style={{ flex: 0.15, margin: 10}}/>
 				</View>
@@ -163,7 +163,7 @@ function Publications(props) {
 		let params =
 			{
 				db: "pubmed",
-				term: "human",
+				term: '(human) AND ("journal article"[Publication Type])',
 				retmode: "json",
 				rettype: "json",
 				retmax: 20,
