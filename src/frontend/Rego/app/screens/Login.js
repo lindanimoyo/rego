@@ -1,36 +1,36 @@
 import * as React from 'react';
 import {
-	View,
-	TouchableOpacity,
-	Text
+  View,
+  TouchableOpacity,
+  Text
 } from "react-native";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 function Login(props) {
-	return(
-		<>
-			<View
-				style={{
-					backgroundColor: '#fff',
-					flex:1
-				}}
-			>
+  return(
+    <>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          flex:1
+        }}
+      >
 
-			</View>
-		</>
-	)
+      </View>
+    </>
+  )
 }
 
 
 const mapStateToProps = state => {
-	const {app} = state;
-	return {app}
+  const {app} = state;
+  return {app}
 }
 
 const mapDispatchToProps = dispatch => (
-	bindActionCreators({
-	}, dispatch)
+  bindActionCreators({
+  }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
