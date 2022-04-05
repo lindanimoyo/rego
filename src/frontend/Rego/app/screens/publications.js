@@ -10,6 +10,7 @@ import {
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Loading from "../components/loading";
 
 function PubCard(props){
 	function _formatNames(authors){
@@ -276,7 +277,7 @@ function Publications(props) {
 			>
 				{
 					loading
-					? null
+					? <Loading {...props} waitText={'ReGo'}/>
 					: <FlatList
 							data={publicationsIDs}
 							renderItem={_renderItem}
