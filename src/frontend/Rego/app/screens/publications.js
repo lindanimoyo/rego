@@ -11,6 +11,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Loading from "../components/loading";
+import {Actions} from "react-native-router-flux";
 
 function PubCard(props){
   function _formatNames(authors){
@@ -129,6 +130,7 @@ function PubCard(props){
           >
             <Pressable
               android_ripple={{borderless: true}}
+              onPress={() => Actions.abstract()}
               style={{
                 //
               }}
