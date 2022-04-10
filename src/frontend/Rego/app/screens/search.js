@@ -8,12 +8,19 @@ import {
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {setPmid, setReferer} from "../state/publicationActions";
+import {Actions} from "react-native-router-flux";
 
 function SearchResultsCard(props){
   return(
     <>
       <Pressable
         android_ripple={{borderless: false, color: '#ff0092'}}
+        onPress={() => {
+          props.setPmid(props.pmid)
+          props.setReferer('search')
+          Actions.abstract()
+        }}
       >
         <Text
           // numberOfLines={4}
@@ -36,6 +43,7 @@ function SearchBar(props){
     return(
       <SearchResultsCard
         {...props}
+        pmid={item.item}
         summary={props.publicationSummary ? props.publicationSummary[item.item]: null}
       />
     )
@@ -220,6 +228,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    setPmid,
+    setReferer
   }, dispatch)
 )
 
