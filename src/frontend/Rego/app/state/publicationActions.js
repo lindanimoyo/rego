@@ -25,4 +25,12 @@ const setReferer = (payload) => (
     payload: payload
   }
 )
-export {setPmid, setQuerykey, setWebenv, setReferer};
+
+const setPMC = (payload) => (
+  {
+    type: 'SET_PMC',
+    payload: payload
+  }
+)
+
+export {setPmid, setQuerykey, setWebenv, setReferer, setPMC};

@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Loading from "../components/loading";
 import {Actions} from "react-native-router-flux";
-import {setPmid, setWebenv, setQuerykey, setReferer} from "../state/publicationActions";
+import {setPmid, setWebenv, setQuerykey, setReferer, setPMC} from "../state/publicationActions";
 
 function PubCard(props){
   function _formatNames(authors){
@@ -22,6 +22,16 @@ function PubCard(props){
     })
     return nameList.join(', ')
   }
+  function getPMCID(idlist) {
+    idlist.map(id => {
+      if (id.idtype === 'pmc'){
+        props.setPMC(id.value);
+      } else {
+        props.setPMC(null)
+      }
+    })
+  }
+
   return(
     <>
       <Pressable
@@ -132,6 +142,7 @@ function PubCard(props){
             <Pressable
               android_ripple={{borderless: true}}
               onPress={() => {
+                getPMCID(props.summary.articleids)
                 props.setPmid(props.pmid)
                 props.setReferer('home')
                 Actions.abstract()
@@ -310,7 +321,8 @@ const mapDispatchToProps = dispatch => (
     setPmid,
     setWebenv,
     setQuerykey,
-    setReferer
+    setReferer,
+    setPMC,
   }, dispatch)
 )
 

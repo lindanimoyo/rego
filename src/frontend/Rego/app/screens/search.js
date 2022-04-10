@@ -8,15 +8,25 @@ import {
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {setPmid, setReferer} from "../state/publicationActions";
+import {setPmid, setReferer, setPMC} from "../state/publicationActions";
 import {Actions} from "react-native-router-flux";
 
 function SearchResultsCard(props){
+  function getPMCID(idlist) {
+    idlist.map(id => {
+      if (id.idtype === 'pmc'){
+        props.setPMC(id.value);
+      } else {
+        props.setPMC(null)
+      }
+    })
+  }
   return(
     <>
       <Pressable
         android_ripple={{borderless: false, color: '#ff0092'}}
         onPress={() => {
+          getPMCID(props.summary.articleids)
           props.setPmid(props.pmid)
           props.setReferer('search')
           Actions.abstract()
@@ -229,7 +239,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setPmid,
-    setReferer
+    setReferer,
+    setPMC,
   }, dispatch)
 )
 
