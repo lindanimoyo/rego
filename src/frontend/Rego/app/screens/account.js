@@ -52,7 +52,7 @@ function Account(props) {
   const [counter, setCounter] = React.useState(0)
 
   const _handleScroll = (event) => {
-    console.log('event',counter, event.nativeEvent.contentOffset.y)
+    // console.log('event',counter, event.nativeEvent.contentOffset.y)
     if (counter === 0){
       setPreviousPos(event.nativeEvent.contentOffset.y)
       setCounter(counter+1)

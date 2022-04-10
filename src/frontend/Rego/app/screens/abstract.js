@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   View,
   TouchableOpacity,
-  Text, Pressable, useWindowDimensions
+  Text, Pressable, useWindowDimensions, ScrollView, FlatList
 } from "react-native";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -52,6 +52,68 @@ function NavBar(props){
 
 function Abstract(props) {
   const {width, height} = useWindowDimensions();
+  const [loading, setLoading] = React.useState(false);
+  const [publicationAbstract, setPublicationAbstract] = React.useState('');
+  function getAbstract() {
+    console.log(props.publication.pmid)
+    let params =
+      {
+        db: "pubmed",
+        idlist: props.publication.pmid,
+        retmode: "json",
+        rettype: "json",
+        webenv: props.publication.referer === 'home' ?
+          props.publication.webenv : props.publication.searchWebenv,
+        querykey: props.publication.referer === 'home' ?
+          props.publication.querykey : props.publication.searchQuerykey
+      }
+    let endpoint =
+      `https://eutils.ncbi.nlm.nih.gov/
+			entrez/eutils/efetch.fcgi?
+			db=${params.db}&id=${params.idlist}&retmode=${params.retmode}
+			&rettype=${params.rettype}$WebEnv=${params.webenv}`
+
+    return fetch(endpoint)
+      .then((response) => response.text())
+      .then(handle => {
+        console.log(handle)
+        setPublicationAbstract(handle);
+        setLoading(false)
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+  }
+  React.useEffect(() => {
+    getAbstract()
+  }, [])
+
+  const [showNav, setShowNav] = React.useState(true)
+  const [previousPos, setPreviousPos] = React.useState(0)
+  const [counter, setCounter] = React.useState(0)
+
+  const _handleScroll = (event) => {
+    // console.log('event',counter, event.nativeEvent.contentOffset.y)
+    if (counter === 0){
+      setPreviousPos(event.nativeEvent.contentOffset.y)
+      setCounter(counter+1)
+    } else if (counter === 5){
+      if (previousPos < event.nativeEvent.contentOffset.y){
+        setCounter(0)
+        setShowNav(false)
+      } else {
+        setCounter(0)
+        setShowNav(true)
+      }
+    } else {
+      if (counter > 5){
+        setCounter(0)
+      }else {
+        setCounter(counter+1)
+      }
+    }
+  }
+
   return(
     <>
       <View
@@ -60,7 +122,35 @@ function Abstract(props) {
           flex:1
         }}
       >
-        <NavBar {...props} width={width} height={height}/>
+        {
+          showNav
+          ? <NavBar {...props} width={width} height={height}/>
+          : null
+        }
+        <FlatList
+          data={[1]}
+          onScroll={_handleScroll}
+          style={{
+            backgroundColor: '#555',
+            margin: 4,
+            marginBottom: showNav ? 40: 5,
+            borderRadius: 20,
+            elevation: 10,
+          }}
+          renderItem={() => (
+            <Text
+              style={{
+                color: '#fff',
+                fontFamily: props.app.fonts.bold,
+                margin: 15,
+                fontSize: 17,
+              }}
+            >
+              {publicationAbstract}
+            </Text>
+          )}
+        >
+        </FlatList>
       </View>
     </>
   )
@@ -68,8 +158,8 @@ function Abstract(props) {
 
 
 const mapStateToProps = state => {
-  const {app} = state;
-  return {app}
+  const {app, publication} = state;
+  return {app, publication}
 }
 
 const mapDispatchToProps = dispatch => (

@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Loading from "../components/loading";
 import {Actions} from "react-native-router-flux";
+import {setPmid, setWebenv, setQuerykey, setReferer} from "../state/publicationActions";
 
 function PubCard(props){
   function _formatNames(authors){
@@ -130,7 +131,11 @@ function PubCard(props){
           >
             <Pressable
               android_ripple={{borderless: true}}
-              onPress={() => Actions.abstract()}
+              onPress={() => {
+                props.setPmid(props.pmid)
+                props.setReferer('home')
+                Actions.abstract()
+              }}
               style={{
                 //
               }}
@@ -183,6 +188,8 @@ function Publications(props) {
       .then((response) => response.json())
       .then(handle => {
         setPublicationIDs(handle.esearchresult.idlist)
+        props.setWebenv(handle.esearchresult.webenv, 'home')
+        props.setQuerykey(handle.esearchresult.querykey, 'home')
         getTitles(handle.esearchresult.webenv, handle.esearchresult.querykey)
       })
       .catch(err => {
@@ -300,6 +307,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    setPmid,
+    setWebenv,
+    setQuerykey,
+    setReferer
   }, dispatch)
 )
 
