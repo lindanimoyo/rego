@@ -16,7 +16,7 @@ function Loading(props) {
         // increase size
         Animated.timing(anim.current, {
           toValue: 3,
-          duration: 2000,
+          duration: 1000,
           useNativeDriver: true,
         }),
         // decrease size

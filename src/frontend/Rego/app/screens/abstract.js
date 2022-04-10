@@ -8,6 +8,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Actions} from "react-native-router-flux";
+import Loading from "../components/loading";
 
 function NavBar(props){
   return(
@@ -55,7 +56,8 @@ function Abstract(props) {
   const [loading, setLoading] = React.useState(false);
   const [publicationAbstract, setPublicationAbstract] = React.useState('');
   function getAbstract() {
-    console.log(props.publication.pmid)
+    setLoading(true);
+    // console.log(props.publication.pmid)
     let params =
       {
         db: "pubmed",
@@ -76,7 +78,7 @@ function Abstract(props) {
     return fetch(endpoint)
       .then((response) => response.text())
       .then(handle => {
-        console.log(handle)
+        // console.log(handle)
         setPublicationAbstract(handle);
         setLoading(false)
       })
@@ -127,30 +129,35 @@ function Abstract(props) {
           ? <NavBar {...props} width={width} height={height}/>
           : null
         }
-        <FlatList
-          data={[1]}
-          onScroll={_handleScroll}
-          style={{
-            backgroundColor: '#555',
-            margin: 4,
-            marginBottom: showNav ? 40: 5,
-            borderRadius: 20,
-            elevation: 10,
-          }}
-          renderItem={() => (
-            <Text
-              style={{
-                color: '#fff',
-                fontFamily: props.app.fonts.bold,
-                margin: 15,
-                fontSize: 17,
-              }}
-            >
-              {publicationAbstract}
-            </Text>
-          )}
-        >
-        </FlatList>
+        {
+          loading
+          ? <Loading {...props} waitText={'ReGo'}/>
+          : (
+              <FlatList
+                data={[1]}
+                onScroll={_handleScroll}
+                style={{
+                  backgroundColor: '#555',
+                  margin: 4,
+                  marginBottom: showNav ? 40: 10,
+                  borderRadius: 20,
+                  elevation: 10,
+                }}
+                renderItem={() => (
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontFamily: props.app.fonts.bold,
+                      margin: 15,
+                      fontSize: 17,
+                    }}
+                  >
+                    {publicationAbstract}
+                  </Text>
+                )}
+              />
+            )
+        }
       </View>
     </>
   )
