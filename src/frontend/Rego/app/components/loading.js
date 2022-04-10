@@ -39,11 +39,11 @@ function Loading(props) {
       }}>
       <Animated.View
         style={{transform: [{scale: anim.current}], alignItems: 'center'}}>
-        <Ionicons name="book" size={70} color={'#ff0092'} />
+        <Ionicons name="book" size={50} color={'#ff0092'} />
         {props.waitText ? (
           <Text
             style={{
-              fontSize: 15,
+              fontSize: 10,
               fontFamily: props.app.fonts.bold,
               color: '#fff',
             }}>

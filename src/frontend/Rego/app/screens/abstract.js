@@ -19,33 +19,49 @@ function NavBar(props){
           minHeight: 50,
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'space-between',
           margin: 10,
           borderRadius: props.height*0.1
         }}
       >
+        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+          <Pressable
+            onPress={() => Actions.pop()}
+            android_ripple={{borderless: true, color: '#ff0092'}}
+            style={{
+              margin: 10,
+              padding: 5,
+            }}
+          >
+            <Ionicons
+              name={'arrow-back'}
+              size={35}
+              color={'#ff0092'}
+              />
+          </Pressable>
+          <Text
+            style={{
+              fontFamily: props.app.fonts.bold,
+              fontSize: 25,
+              color: '#000'
+            }}
+          >
+            Abstract
+          </Text>
+        </View>
         <Pressable
           onPress={() => Actions.pop()}
           android_ripple={{borderless: true, color: '#ff0092'}}
           style={{
-            margin: 10,
-            padding: 5,
+            margin: 15
           }}
         >
           <Ionicons
-            name={'arrow-back'}
+            name={'heart-outline'}
             size={35}
             color={'#ff0092'}
-            />
+          />
         </Pressable>
-        <Text
-          style={{
-            fontFamily: props.app.fonts.bold,
-            fontSize: 25,
-            color: '#000'
-          }}
-        >
-          Abstract
-        </Text>
       </View>
     </>
   )
@@ -137,7 +153,7 @@ function Abstract(props) {
                 data={[1]}
                 onScroll={_handleScroll}
                 style={{
-                  backgroundColor: '#555',
+                  backgroundColor: '#505',
                   margin: 4,
                   marginBottom: showNav ? 40: 10,
                   borderRadius: 20,

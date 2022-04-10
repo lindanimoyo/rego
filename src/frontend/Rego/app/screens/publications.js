@@ -107,7 +107,7 @@ function PubCard(props){
               }}
             >
               <Ionicons
-                name={'heart'}
+                name={'heart-outline'}
                 size={40}
                 color={'#ff0092'}
               />
