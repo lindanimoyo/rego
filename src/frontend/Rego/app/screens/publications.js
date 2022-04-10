@@ -23,9 +23,10 @@ function PubCard(props){
     return nameList.join(', ')
   }
   function getPMCID(idlist) {
-    idlist.map(id => {
+    idlist.some(id => {
       if (id.idtype === 'pmc'){
         props.setPMC(id.value);
+        return true
       } else {
         props.setPMC(null)
       }

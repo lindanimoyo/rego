@@ -132,6 +132,55 @@ function Abstract(props) {
     }
   }
 
+  function _listFooterComponent(item){
+    return(
+      <>
+        <View style={{
+          minHeight: 50,
+          backgroundColor: '#ff0092',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 0
+        }}>
+          <Pressable
+            android_ripple={{ borderless: true, color: '#ff0'}}
+            style={{
+              width: '100%'
+            }}
+          >
+            <Text
+              style={{
+                alignSelf: 'center',
+                color: '#0ff',
+                fontSize: 20,
+                fontFamily: props.app.fonts.bold
+              }}
+            >
+              Read full publication...
+            </Text>
+          </Pressable>
+        </View>
+      </>
+    )
+  }
+
+  function _renderItem(item){
+    return(
+      <>
+        <Text
+          style={{
+            color: '#000',
+            fontFamily: props.app.fonts.bold,
+            margin: 15,
+            fontSize: 17,
+          }}
+        >
+          {publicationAbstract}
+        </Text>
+      </>
+    )
+  }
+
   return(
     <>
       <View
@@ -153,24 +202,14 @@ function Abstract(props) {
                 data={[1]}
                 onScroll={_handleScroll}
                 style={{
-                  backgroundColor: '#505',
+                  backgroundColor: '#fff',
                   margin: 4,
                   marginBottom: showNav ? 40: 10,
                   borderRadius: 20,
                   elevation: 10,
                 }}
-                renderItem={() => (
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontFamily: props.app.fonts.bold,
-                      margin: 15,
-                      fontSize: 17,
-                    }}
-                  >
-                    {publicationAbstract}
-                  </Text>
-                )}
+                renderItem={_renderItem}
+                ListFooterComponent={props.publication.pmc ? _listFooterComponent: null}
               />
             )
         }
