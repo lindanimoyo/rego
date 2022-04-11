@@ -162,9 +162,9 @@ function Abstract(props) {
           backgroundColor: '#ff0092',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: 100,
+          borderRadius: 0,
           elevation: 10,
-          margin: 10,
+          margin: 0,
 
         }}>
           <Pressable
@@ -230,7 +230,7 @@ function Abstract(props) {
     <>
       <View
         style={{
-          backgroundColor: '#004',
+          backgroundColor: '#fff',
           flex:1
         }}
       >
@@ -238,7 +238,7 @@ function Abstract(props) {
           source={{uri: `https://pubmed.ncbi.nlm.nih.gov/${props.publication.pmid}/`}}
           renderLoading={loadingIndicator}
           startInLoadingState={true}
-          style={{ backgroundColor: '#006'}}
+          style={{ backgroundColor: '#fff'}}
           onScroll={_handleScroll}
         />
         {

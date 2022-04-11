@@ -33,4 +33,18 @@ const setPMC = (payload) => (
   }
 )
 
-export {setPmid, setQuerykey, setWebenv, setReferer, setPMC};
+const setSearchTerm = (payload) => (
+  {
+    type: 'SET_SEARCH_TERM',
+    payload: payload
+  }
+)
+
+export {
+  setPmid,
+  setQuerykey,
+  setWebenv,
+  setReferer,
+  setPMC,
+  setSearchTerm
+};

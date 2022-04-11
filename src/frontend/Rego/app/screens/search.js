@@ -8,7 +8,7 @@ import {
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {setPmid, setReferer, setPMC} from "../state/publicationActions";
+import {setPmid, setReferer, setPMC, setSearchTerm} from "../state/publicationActions";
 import {Actions} from "react-native-router-flux";
 
 function SearchResultsCard(props){
@@ -32,14 +32,27 @@ function SearchResultsCard(props){
           props.setReferer('search')
           Actions.abstract()
         }}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          padding: 10,
+          // width: '93%',
+          alignSelf: 'center'
+        }}
       >
+        <Ionicons
+          name={'book'}
+          size={30}
+          color={'#ff0092'}
+        />
         <Text
           // numberOfLines={4}
           style={{
             fontFamily: props.app.fonts.bold,
             fontSize: 18,
-            color: '#000',
+            color: '#444',
             margin:10,
+            flex:1
           }}
         >
           {props.summary ? props.summary.title: 'Search again'}
@@ -83,15 +96,15 @@ function SearchBar(props){
 
           }}
         >
-          <Ionicons
-            name={'search'}
-            size={25}
-            color={'#ff0092'}
-          />
+          {
+            props.isLoading
+              ? <ActivityIndicator color={'#ff0092'}/>
+              : null
+          }
           <TextInput
             placeholder={'Search here'}
             selectionColor={'#ff0092'}
-            onChangeText={(text) => props.onSearch(text)}
+            onChangeText={(text) => props.setSearchTerm(text)}
             style={{
               fontFamily: props.app.fonts.medium,
               flex: 1,
@@ -99,11 +112,20 @@ function SearchBar(props){
               fontSize: 18
             }}
           />
-          {
-            props.isLoading
-            ? <ActivityIndicator color={'#ff0092'}/>
-            : null
-          }
+          <Pressable
+            android_ripple={{ borderless: true, color: '#ff0092'}}
+            style={{
+              padding: 10,
+            }}
+            onPress={() => props.onSearch(props.publication.searchTerm)}
+          >
+            <Ionicons
+              name={'search'}
+              size={25}
+              color={'#ff0092'}
+            />
+          </Pressable>
+
         </View>
         {
           props.isLoading
@@ -114,10 +136,10 @@ function SearchBar(props){
                 renderItem={_renderItem}
                 style={{
                   backgroundColor: '#fff',
-                  margin: 5,
+                  margin: 10,
                   marginTop: 10,
-                  borderRadius:10,
-                  maxHeight: props.height * 1/1.5
+                  borderRadius:20,
+                  maxHeight: props.height * 1/1.4
                 }}
               />
             )
@@ -140,7 +162,7 @@ function Search(props) {
         term: `${term}`,
         retmode: "json",
         rettype: "json",
-        retmax: 5,
+        retmax: 20,
         usehistory: "y"
       }
     let endPoint =
@@ -168,7 +190,7 @@ function Search(props) {
         db: "pubmed",
         retmode: "json",
         rettype: "json",
-        retmax: 5,
+        retmax: 20,
         usehistory: "y"
       }
     let endpoint =
@@ -233,8 +255,8 @@ function Search(props) {
 
 
 const mapStateToProps = state => {
-  const {app} = state;
-  return {app}
+  const {app, publication} = state;
+  return {app, publication}
 }
 
 const mapDispatchToProps = dispatch => (
@@ -242,6 +264,7 @@ const mapDispatchToProps = dispatch => (
     setPmid,
     setReferer,
     setPMC,
+    setSearchTerm,
   }, dispatch)
 )
 

@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   searchWebenv: '',
   searchQuerykey: '',
   referer: '',
-  pmc: null
+  pmc: null,
+  searchTerm: ''
 }
 
 export const publicationReducer = (state=INITIAL_STATE, action) => {
@@ -34,6 +35,9 @@ export const publicationReducer = (state=INITIAL_STATE, action) => {
       return {...state}
     case "SET_PMC":
       state.pmc = action.payload
+      return {...state}
+    case "SET_SEARCH_TERM":
+      state.searchTerm = action.payload
       return {...state}
     default:
       return state

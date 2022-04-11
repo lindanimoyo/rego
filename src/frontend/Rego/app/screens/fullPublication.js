@@ -64,7 +64,7 @@ function FullPublication(props) {
         <WebView
           source={{ uri: `https://www.ncbi.nlm.nih.gov/pmc/articles/${props.publication.pmc}/`}}
           style={{
-            backgroundColor: '#004'
+            backgroundColor: '#fff'
           }}
           startInLoadingState={true}
           renderLoading={loadingIndicator}
