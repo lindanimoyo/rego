@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   searchQuerykey: '',
   referer: '',
   pmc: null,
-  searchTerm: ''
+  searchTerm: '',
+  favourites: []
 }
 
 export const publicationReducer = (state=INITIAL_STATE, action) => {
@@ -39,6 +40,14 @@ export const publicationReducer = (state=INITIAL_STATE, action) => {
     case "SET_SEARCH_TERM":
       state.searchTerm = action.payload
       return {...state}
+    case 'SET_FAVOURITE':
+      if(action.action === 'add'){
+        state.favourites.push(action.payload)
+        return {...state}
+      } else {
+        state.favourites = state.favourites.filter(item => item !== action.payload)
+        return {...state}
+      }
     default:
       return state
   }

@@ -40,11 +40,20 @@ const setSearchTerm = (payload) => (
   }
 )
 
+const setFavourite = (payload, action) => (
+  {
+    type: 'SET_FAVOURITE',
+    payload: payload,
+    action: action
+  }
+)
+
 export {
   setPmid,
   setQuerykey,
   setWebenv,
   setReferer,
   setPMC,
-  setSearchTerm
+  setSearchTerm,
+  setFavourite
 };
