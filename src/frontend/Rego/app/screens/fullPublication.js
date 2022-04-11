@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import WebView from "react-native-webview";
 import Loading from "../components/loading";
 import {NavBar} from "./abstract";
+import {setFavourite} from "../state/publicationActions";
 
 function FullPublication(props) {
   const {width, height} = useWindowDimensions();
@@ -89,6 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    setFavourite
   }, dispatch)
 )
 

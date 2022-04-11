@@ -41,7 +41,7 @@ export const publicationReducer = (state=INITIAL_STATE, action) => {
       state.searchTerm = action.payload
       return {...state}
     case 'SET_FAVOURITE':
-      if(action.action === 'add'){
+      if(action.mode === 'add'){
         state.favourites.push(action.payload)
         return {...state}
       } else {

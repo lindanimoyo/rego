@@ -10,8 +10,21 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {Actions} from "react-native-router-flux";
 import Loading from "../components/loading";
 import WebView from "react-native-webview";
+import {setFavourite} from "../state/publicationActions";
 
 function NavBar(props){
+  const favouriteCheck = (id) => {
+    let arr = props.publication.favourites.filter(ids => ids === id)
+    return arr.length > 0
+  }
+
+  const addFavourite = (id) => {
+    if (favouriteCheck(id)){
+      props.setFavourite(id, 'remove')
+    } else {
+      props.setFavourite(id, 'add')
+    }
+  }
   return(
     <>
       <View
@@ -56,14 +69,14 @@ function NavBar(props){
           </Text>
         </View>
         <Pressable
-          onPress={() => Actions.pop()}
+          onPress={() => addFavourite(props.publication.pmid)}
           android_ripple={{borderless: true, color: '#ff0092'}}
           style={{
             margin: 15
           }}
         >
           <Ionicons
-            name={'heart-outline'}
+            name={favouriteCheck(props.publication.pmid) ? 'heart': 'heart-outline'}
             size={35}
             color={'#ff0092'}
           />
@@ -266,6 +279,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    setFavourite
   }, dispatch)
 )
 

@@ -12,7 +12,14 @@ import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Loading from "../components/loading";
 import {Actions} from "react-native-router-flux";
-import {setPmid, setWebenv, setQuerykey, setReferer, setPMC} from "../state/publicationActions";
+import {
+  setPmid,
+  setWebenv,
+  setQuerykey,
+  setReferer,
+  setPMC,
+  setFavourite
+} from "../state/publicationActions";
 
 function PubCard(props){
   function _formatNames(authors){
@@ -31,6 +38,19 @@ function PubCard(props){
         props.setPMC(null)
       }
     })
+  }
+
+  const favouriteCheck = (id) => {
+    let arr = props.publication.favourites.filter(ids => ids === id)
+    return arr.length > 0
+  }
+
+  const addFavourite = (id) => {
+    if (favouriteCheck(id)){
+      props.setFavourite(id, 'remove')
+    } else {
+      props.setFavourite(id, 'add')
+    }
   }
 
   return(
@@ -106,21 +126,22 @@ function PubCard(props){
               marginTop: 30,
               marginBottom: 10,
               margin: 10,
-              borderWidth: 2,
-              borderColor: '#ff0092'
+              borderWidth: favouriteCheck(props.pmid) ? 4: 2,
+              borderColor: favouriteCheck(props.pmid) ? '#ff0092' : '#555'
               // elevation: 10,
             }}
           >
             <Pressable
               android_ripple={{borderless: true, color: '#ff0092'}}
+              onPress={() => addFavourite(props.pmid)}
               style={{
                 //
               }}
             >
               <Ionicons
-                name={'heart-outline'}
+                name={favouriteCheck(props.pmid) ? 'heart': 'heart-outline'}
                 size={40}
-                color={'#ff0092'}
+                color={favouriteCheck(props.pmid) ? '#ff0092' : '#555'}
               />
             </Pressable>
           </View>
@@ -313,8 +334,8 @@ function Publications(props) {
 
 
 const mapStateToProps = state => {
-  const {app} = state;
-  return {app}
+  const {app, publication} = state;
+  return {app, publication}
 }
 
 const mapDispatchToProps = dispatch => (
@@ -324,6 +345,7 @@ const mapDispatchToProps = dispatch => (
     setQuerykey,
     setReferer,
     setPMC,
+    setFavourite
   }, dispatch)
 )
 

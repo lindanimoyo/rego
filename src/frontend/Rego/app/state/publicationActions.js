@@ -40,11 +40,11 @@ const setSearchTerm = (payload) => (
   }
 )
 
-const setFavourite = (payload, action) => (
+const setFavourite = (payload, mode) => (
   {
     type: 'SET_FAVOURITE',
     payload: payload,
-    action: action
+    mode: mode
   }
 )
 
