@@ -116,7 +116,7 @@ function Account(props) {
           width={width}
           height={height}
           pmid={item.item}
-          summary={publicationSummary ? publicationSummary[item.item]: {}}
+          summary={publicationSummary ? publicationSummary[item.item]: null}
         />
       </>
     )
@@ -195,6 +195,8 @@ function Account(props) {
                 ListFooterComponent={_footerComponent}
                 ListEmptyComponent={_listEmptyComponent}
                 onScroll={_handleScroll}
+                refreshing={loading}
+                onRefresh={() => getTitles(props.publication.favourites)}
               />
             )
         }
