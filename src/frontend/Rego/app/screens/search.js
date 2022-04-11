@@ -79,7 +79,7 @@ function SearchBar(props){
         style={{
           top: 20,
           position: 'absolute',
-          width: '100%'
+          width: '100%',
         }}
       >
         <View
@@ -93,6 +93,7 @@ function SearchBar(props){
             alignSelf: 'center',
             width: '90%',
             borderRadius: props.height * 0.1,
+            elevation:10
 
           }}
         >
@@ -139,6 +140,7 @@ function SearchBar(props){
                   margin: 10,
                   marginTop: 10,
                   borderRadius:20,
+                  elevation: 10,
                   maxHeight: props.height * 1/1.4
                 }}
               />
@@ -231,7 +233,7 @@ function Search(props) {
     <>
       <View
         style={{
-          backgroundColor: '#004',
+          backgroundColor: '#fff',
           flex:1,
           alignItems: 'center',
           justifyContent: 'center'

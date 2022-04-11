@@ -45,7 +45,7 @@ function Loading(props) {
             style={{
               fontSize: 10,
               fontFamily: props.app.fonts.bold,
-              color: '#fff',
+              color: '#000',
             }}>
             {props.waitText}
           </Text>

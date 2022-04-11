@@ -135,7 +135,7 @@ function Account(props) {
             style={{
               fontFamily: props.app.fonts.bold,
               fontSize: 25,
-              color: '#0ff',
+              color: '#ff0092',
               margin: 20,
 
               textAlign: 'center'
@@ -160,13 +160,14 @@ function Account(props) {
       <>
         <Text
           style={{
-            color: '#555',
+            color: '#888',
             alignSelf: 'center',
             textAlign: 'center',
             fontFamily: props.app.fonts.medium,
-            fontSize: 18,
+            fontSize: 20,
             flex: 1,
-            margin: 30
+            marginTop: 100,
+            margin: 40
           }}
         >
           Your favourite publications will appear here
@@ -179,13 +180,13 @@ function Account(props) {
     <>
       <View
         style={{
-          backgroundColor: '#004',
+          backgroundColor: '#fff',
           flex:1,
         }}
       >
         {
           loading
-          ? <Loading {...props} waitText={'ReGo'}/>
+          ? <Loading {...props} waitText={'ReGO'}/>
           : (
               <FlatList
                 data={props.publication.favourites}

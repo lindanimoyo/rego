@@ -233,7 +233,7 @@ function Abstract(props) {
             alignSelf: 'center'
           }}
         >
-          <Loading {...props} waitText={'ReGo'}/>
+          <Loading {...props} waitText={'ReGO'}/>
         </View>
       </>
     )

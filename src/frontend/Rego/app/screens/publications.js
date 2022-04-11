@@ -135,7 +135,8 @@ function PubCard(props){
               android_ripple={{borderless: true, color: '#ff0092'}}
               onPress={() => addFavourite(props.pmid)}
               style={{
-                //
+                width: '100%',
+                alignItems: 'center',
               }}
             >
               <Ionicons
@@ -288,7 +289,7 @@ function Publications(props) {
             style={{
               fontFamily: props.app.fonts.bold,
               fontSize: 25,
-              color: '#0ff',
+              color: '#ff0092',
               margin: 40,
               // marginBottom: 50,
               // marginTop: 50,
@@ -313,13 +314,13 @@ function Publications(props) {
     <>
       <View
         style={{
-          backgroundColor: '#004',
+          backgroundColor: '#fff',
           flex:1
         }}
       >
         {
           loading
-            ? <Loading {...props} waitText={'ReGo'}/>
+            ? <Loading {...props} waitText={'ReGO'}/>
             : <FlatList
               data={publicationsIDs}
               renderItem={_renderItem}
