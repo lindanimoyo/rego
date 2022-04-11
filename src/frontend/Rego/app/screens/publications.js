@@ -59,7 +59,7 @@ function PubCard(props){
         style={{
           minHeight: props.height * 1/2,
           backgroundColor: '#fff',
-          margin: 5,
+          margin: 10,
           marginTop: 15,
           // marginBottom: 0,
           borderRadius: 20,
@@ -288,10 +288,10 @@ function Publications(props) {
             style={{
               fontFamily: props.app.fonts.bold,
               fontSize: 25,
-              color: '#fff',
-              margin: 20,
-              marginBottom: 50,
-              marginTop: 50,
+              color: '#0ff',
+              margin: 40,
+              // marginBottom: 50,
+              // marginTop: 50,
               textAlign: 'center'
             }}
           >

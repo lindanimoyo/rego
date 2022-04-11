@@ -116,7 +116,7 @@ function Account(props) {
           width={width}
           height={height}
           pmid={item.item}
-          summary={publicationSummary[item.item]}
+          summary={publicationSummary ? publicationSummary[item.item]: {}}
         />
       </>
     )
