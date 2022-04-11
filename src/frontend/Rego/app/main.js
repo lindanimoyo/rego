@@ -10,6 +10,7 @@ import Search from "./screens/search";
 import Login from "./screens/Login";
 import Signup from "./screens/signup";
 import Abstract from "./screens/abstract";
+import FullPublication from "./screens/fullPublication";
 import {Router, Scene, Lightbox, Tabs} from "react-native-router-flux";
 import CustomTabBar from "./components/tab";
 
@@ -66,6 +67,11 @@ function App(){
                 <Scene
                   component={Abstract}
                   key={'abstract'}
+                  hideNavBar
+                />
+                <Scene
+                  component={FullPublication}
+                  key={'fullPublication'}
                   hideNavBar
                 />
               </Scene>

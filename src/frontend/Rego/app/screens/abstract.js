@@ -106,6 +106,22 @@ function Abstract(props) {
     getAbstract()
   }, [])
 
+  function fetchPMC(id){
+    let endpoint =
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=${id}&retmode=json&rettype=json`
+
+    return fetch(endpoint)
+      .then((response) => response.text())
+      .then(handle => {
+        console.log('pmc', handle)
+        // setPublicationAbstract(handle);
+        // setLoading(false)
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+  }
+
   const [showNav, setShowNav] = React.useState(true)
   const [previousPos, setPreviousPos] = React.useState(0)
   const [counter, setCounter] = React.useState(0)
@@ -144,6 +160,10 @@ function Abstract(props) {
         }}>
           <Pressable
             android_ripple={{ borderless: true, color: '#ff0'}}
+            onPress={() => {
+              // fetchPMC(props.publication.pmc)
+              Actions.fullPublication()
+            }}
             style={{
               width: '100%'
             }}
