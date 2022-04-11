@@ -17,6 +17,8 @@ import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PersistGate} from 'redux-persist/integration/react';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
+import Splash from "./screens/splash";
+import codePush from 'react-native-code-push'
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler]",
@@ -34,7 +36,7 @@ function App(){
   const persistor = persistStore(store);
   // const store = createStore(rootReducer);
   const client = new ApolloClient({
-    link: "https://rego.org/graphql",
+    link: "https://rego.org/",
     cache: new InMemoryCache()
   })
   return (
@@ -97,4 +99,6 @@ function App(){
   )
 }
 
-export default App;
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+
+export default codePush(codePushOptions)(App);

@@ -7,7 +7,7 @@ import Loading from "../components/loading";
 function Splash(props) {
   return (
     <>
-      <View style={{flex: 1, backgroundColor: '#ff0092', alignItems: 'center'}}>
+      <View style={{flex: 1, backgroundColor: '#004', alignItems: 'center'}}>
         <Loading {...props} />
       </View>
     </>
