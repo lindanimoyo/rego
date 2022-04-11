@@ -57,15 +57,15 @@ function CustomTabBar(props){
         return {'name':'heart',
           'size' : 25,
           'color': props.app.colors.background,
-          'label': 'Favourite',
+          'label': 'Favourites',
           'active': true
         }
       }
       else {
         return {'name':'heart-outline',
-          'size' : 25,
+          'size' : 28,
           'color': props.app.colors.statusBar,
-          'label': 'Favourite',
+          'label': 'Favourites',
           'active': false
         }
       }
