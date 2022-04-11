@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Actions} from "react-native-router-flux";
 import Loading from "../components/loading";
+import WebView from "react-native-webview";
 
 function NavBar(props){
   return(
@@ -20,8 +21,13 @@ function NavBar(props){
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          margin: 10,
-          borderRadius: props.height*0.1
+          margin: 0,
+          borderRadius: props.height*0.1,
+          position: 'absolute',
+          top: 7,
+          width: '91%',
+          alignSelf: 'center',
+          elevation: 10,
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center'}}>
@@ -42,8 +48,8 @@ function NavBar(props){
           <Text
             style={{
               fontFamily: props.app.fonts.bold,
-              fontSize: 25,
-              color: '#000'
+              fontSize: 23,
+              color: '#ff0092'
             }}
           >
             Abstract
@@ -148,15 +154,18 @@ function Abstract(props) {
     }
   }
 
-  function _listFooterComponent(item){
+  function _listFooterComponent(){
     return(
       <>
         <View style={{
-          minHeight: 50,
+          minHeight: 60,
           backgroundColor: '#ff0092',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: 0
+          borderRadius: 100,
+          elevation: 10,
+          margin: 10,
+
         }}>
           <Pressable
             android_ripple={{ borderless: true, color: '#ff0'}}
@@ -171,7 +180,7 @@ function Abstract(props) {
             <Text
               style={{
                 alignSelf: 'center',
-                color: '#0ff',
+                color: '#fff',
                 fontSize: 20,
                 fontFamily: props.app.fonts.bold
               }}
@@ -201,6 +210,22 @@ function Abstract(props) {
     )
   }
 
+  const loadingIndicator = () => {
+    return(
+      <>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            alignSelf: 'center'
+          }}
+        >
+          <Loading {...props} waitText={'ReGo'}/>
+        </View>
+      </>
+    )
+  }
+
   return(
     <>
       <View
@@ -209,29 +234,24 @@ function Abstract(props) {
           flex:1
         }}
       >
+        <WebView
+          source={{uri: `https://pubmed.ncbi.nlm.nih.gov/${props.publication.pmid}/`}}
+          renderLoading={loadingIndicator}
+          startInLoadingState={true}
+          style={{ backgroundColor: '#006'}}
+          onScroll={_handleScroll}
+        />
         {
           showNav
-          ? <NavBar {...props} width={width} height={height}/>
-          : null
+            ? <NavBar {...props} width={width} height={height}/>
+            : null
         }
         {
-          loading
-          ? <Loading {...props} waitText={'ReGo'}/>
-          : (
-              <FlatList
-                data={[1]}
-                onScroll={_handleScroll}
-                style={{
-                  backgroundColor: '#fff',
-                  margin: 4,
-                  marginBottom: showNav ? 40: 10,
-                  borderRadius: 20,
-                  elevation: 10,
-                }}
-                renderItem={_renderItem}
-                ListFooterComponent={props.publication.pmc ? _listFooterComponent: null}
-              />
-            )
+          !props.publication.pmc
+          ? showNav
+              ? _listFooterComponent()
+              : null
+          : null
         }
       </View>
     </>
