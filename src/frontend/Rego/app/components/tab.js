@@ -54,18 +54,18 @@ function CustomTabBar(props){
     }
     else if (key === 'account'){
       if (state.routes[activeTabIndex].key === 'account'){
-        return {'name':'person',
+        return {'name':'heart',
           'size' : 25,
           'color': props.app.colors.background,
-          'label': 'Account',
+          'label': 'Favourite',
           'active': true
         }
       }
       else {
-        return {'name':'person-outline',
+        return {'name':'heart-outline',
           'size' : 25,
           'color': props.app.colors.statusBar,
-          'label': 'Account',
+          'label': 'Favourite',
           'active': false
         }
       }
