@@ -84,7 +84,7 @@ function Account(props) {
 
   React.useEffect(() => {
     getTitles(props.publication.favourites)
-  }, [props.publication.favourites])
+  }, [])
 
   const _handleScroll = (event) => {
     // console.log('event',counter, event.nativeEvent.contentOffset.y)

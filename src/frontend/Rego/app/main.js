@@ -13,6 +13,10 @@ import Abstract from "./screens/abstract";
 import FullPublication from "./screens/fullPublication";
 import {Router, Scene, Lightbox, Tabs} from "react-native-router-flux";
 import CustomTabBar from "./components/tab";
+import {persistStore, persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {PersistGate} from 'redux-persist/integration/react';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler]",
@@ -20,7 +24,15 @@ LogBox.ignoreLogs([
   "Deprecation in 'navigationOptions':"
 ])
 function App(){
-  const store = createStore(rootReducer);
+  const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage,
+    stateReconciler: autoMergeLevel2,
+  };
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const store = createStore(persistedReducer);
+  const persistor = persistStore(store);
+  // const store = createStore(rootReducer);
   const client = new ApolloClient({
     link: "https://rego.org/graphql",
     cache: new InMemoryCache()
@@ -29,54 +41,56 @@ function App(){
     <>
       <ApolloProvider client={client}>
         <Provider store={store}>
-          <Router>
-            <Lightbox>
-              <Scene key={'root'}>
-                <Tabs
-                  key={'tabBar'}
-                  tabBarComponent={CustomTabBar}
-                  hideNavBar
-                  lazy
-                >
+          <PersistGate persistor={persistor} loading={<Splash />}>
+            <Router>
+              <Lightbox>
+                <Scene key={'root'}>
+                  <Tabs
+                    key={'tabBar'}
+                    tabBarComponent={CustomTabBar}
+                    hideNavBar
+                    lazy
+                  >
+                    <Scene
+                      component={Publications}
+                      key={'publications'}
+                      hideNavBar
+                    />
+                    <Scene
+                      component={Search}
+                      key={'search'}
+                      hideNavBar
+                    />
+                    <Scene
+                      component={Account}
+                      key={'account'}
+                      hideNavBar
+                    />
+                  </Tabs>
                   <Scene
-                    component={Publications}
-                    key={'publications'}
+                    component={Login}
+                    key={'login'}
                     hideNavBar
                   />
                   <Scene
-                    component={Search}
-                    key={'search'}
+                    component={Signup}
+                    key={'signup'}
                     hideNavBar
                   />
                   <Scene
-                    component={Account}
-                    key={'account'}
+                    component={Abstract}
+                    key={'abstract'}
                     hideNavBar
                   />
-                </Tabs>
-                <Scene
-                  component={Login}
-                  key={'login'}
-                  hideNavBar
-                />
-                <Scene
-                  component={Signup}
-                  key={'signup'}
-                  hideNavBar
-                />
-                <Scene
-                  component={Abstract}
-                  key={'abstract'}
-                  hideNavBar
-                />
-                <Scene
-                  component={FullPublication}
-                  key={'fullPublication'}
-                  hideNavBar
-                />
-              </Scene>
-            </Lightbox>
-          </Router>
+                  <Scene
+                    component={FullPublication}
+                    key={'fullPublication'}
+                    hideNavBar
+                  />
+                </Scene>
+              </Lightbox>
+            </Router>
+          </PersistGate>
         </Provider>
       </ApolloProvider>
     </>
