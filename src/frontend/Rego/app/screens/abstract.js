@@ -48,11 +48,11 @@ function NavBar(props){
           <Text
             style={{
               fontFamily: props.app.fonts.bold,
-              fontSize: 23,
+              fontSize: 20,
               color: '#ff0092'
             }}
           >
-            Abstract
+            {props.title ? props.title: 'Abstract'}
           </Text>
         </View>
         <Pressable
@@ -247,7 +247,7 @@ function Abstract(props) {
             : null
         }
         {
-          !props.publication.pmc
+          props.publication.pmc
           ? showNav
               ? _listFooterComponent()
               : null
@@ -270,3 +270,4 @@ const mapDispatchToProps = dispatch => (
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Abstract)
+export {NavBar}
