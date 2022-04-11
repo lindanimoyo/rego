@@ -325,6 +325,8 @@ function Publications(props) {
               renderItem={_renderItem}
               ListHeaderComponent={_headerComponent}
               ListFooterComponent={_footerComponent}
+              refreshing={loading}
+              onRefresh={() => getPublications()}
             />
         }
       </View>
