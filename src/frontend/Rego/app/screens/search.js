@@ -216,8 +216,8 @@ function Search(props) {
         <Text
           style={{
             fontFamily: props.app.fonts.bold,
-            fontSize: 25,
-            color: '#00f',
+            fontSize: 20,
+            color: '#555',
             textAlign: 'center',
             margin: 20
           }}
