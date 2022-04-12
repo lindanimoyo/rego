@@ -7,7 +7,14 @@ const INITIAL_STATE = {
   referer: '',
   pmc: null,
   searchTerm: '',
-  favourites: []
+  favourites: [],
+  keyWords: [
+    'human', 'health', 'covid', 'ai', 'machine learning',
+    'genome', 'plants', 'animal', 'bacteria', 'microbiome',
+    'psychology', 'drugs', 'medicine', 'sequencing', 'fungi',
+    'environment', 'conservation', 'marine', 'biology', 'pipeline',
+    'dna', 'rna', 'current research', 'trends', 'data'
+  ]
 }
 
 export const publicationReducer = (state=INITIAL_STATE, action) => {

@@ -205,7 +205,7 @@ function Publications(props) {
     let params =
       {
         db: "pubmed",
-        term: '(human) AND ("journal article"[Publication Type])',
+        term: props.publication.keyWords[Math.floor(Math.random() * props.publication.keyWords.length)],
         retmode: "json",
         rettype: "json",
         retmax: 20,
