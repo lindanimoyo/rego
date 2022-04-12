@@ -85,7 +85,7 @@ function CustomTabBar(props){
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         minHeight: 60,
-        height: height * 0.1,
+        // height: height * 0.1,
         backgroundColor: '#ffffff',
         borderRadius: height * 0.1,
         elevation: 10

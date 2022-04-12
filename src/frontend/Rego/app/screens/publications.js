@@ -56,6 +56,12 @@ function PubCard(props){
   return(
     <>
       <Pressable
+        onPress={() => {
+          getPMCID(props.summary.articleids)
+          props.setPmid(props.pmid)
+          props.setReferer('home')
+          Actions.abstract()
+        }}
         style={{
           minHeight: props.height * 1/2,
           backgroundColor: '#fff',
@@ -115,7 +121,7 @@ function PubCard(props){
           <View
             style={{
               minHeight: 50,
-              height: props.height * 0.08,
+              // height: props.height * 0.08,
               backgroundColor: '#fff',
               width: '30%',
               justifyContent: 'center',
@@ -149,7 +155,7 @@ function PubCard(props){
           <View
             style={{
               minHeight: 50,
-              height: props.height * 0.08,
+              // height: props.height * 0.08,
               backgroundColor: '#5f5',
               width: '50%',
               elevation: 5,

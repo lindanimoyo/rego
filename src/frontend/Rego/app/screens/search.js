@@ -86,7 +86,7 @@ function SearchBar(props){
           style={{
             flexDirection: 'row',
             minHeight: 50,
-            height: props.height * 0.1,
+            // height: props.height * 0.1,
             backgroundColor: '#fff',
             alignItems: 'center',
             padding: 10,
@@ -104,13 +104,15 @@ function SearchBar(props){
           }
           <TextInput
             placeholder={'Search here'}
+            placeholderTextColor={'grey'}
             selectionColor={'#ff0092'}
             onChangeText={(text) => props.setSearchTerm(text)}
             style={{
               fontFamily: props.app.fonts.medium,
               flex: 1,
               marginLeft: 10,
-              fontSize: 18
+              fontSize: 18,
+              color: '#000'
             }}
           />
           <Pressable
