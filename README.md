@@ -58,3 +58,23 @@ more personalised user experience.
 - [Workflow](./workflow):
   - Contains the workflow and implementation description of the project
 
+### Meet the team
+1. [Wilson Mudaki]()
+- Affiliation:
+  - Bioscience Research Center,Pwani University, P.O. Box 195-80108, Kilifi, Kenya
+- Roles/Contribution:
+  - Team lead
+  - Technical lead
+
+2. [Dele-Alimi Temiloluwa]()
+- Affiliation:
+  - Public Health Biotechnology Unit, Institute of Child Health, University of Ibadan, Ibadan, Nigeria
+- Roles/Contribution:
+  - Lead writer
+  - Team co-lead
+
+3. [Julius Mwakosya]()
+- Affiliation:
+  - Molecular Biology and Biotechnology Department, University of Dar es salaam
+- Roles/Contribution: 
+  - Technical contribution
