@@ -45,7 +45,7 @@ more personalised user experience.
 </div>
 
 ### Project organization
-[rego]() <br>
+[rego](./README.md) <br>
 - [output](./output):
   - Contains the screen-captures of the rego app in use
 - [scripts](./scripts):
