@@ -1,10 +1,27 @@
-# About
-REGO: A Cross-platform Mobile Application for Reading Research Papers on the Go
+# ReGO
+<p align="center">
+ <img src="src/frontend/Rego/app/assets/images/rego.png">
+Research that moves
+</p>
 
-# Motivation
-In the current world, people have turned to mobile applications as a means of accessing dedicated and curated information. Mobile apps are the new gateway to information and resources on the internet. REGO is an app visioned for research scientists and science enthusiasts, to keep them up to date with the latest developments in the scientific world by giving them access to research papers on PubMed. 
+### About
+A Cross-platform Mobile Application for Reading Research Papers on the Go
 
-# Features and functionality
+### Summary
+The availability of biomedical literature has increased in the last decade, PubMed holds about
+30 million papers with an additional million papers added annually. However, the enormous
+resources being produced make it hard to find relevant documents from databases, without
+the right skillset, traditional databases like PubMed might seem difficult to use. The REGO
+mobile application is designed to provide research papers to users in real-time, with a
+graphical user interface designed with React Native and functionality provided through Node
+JS and Mongo DB, it uses GraphQl as the middleware, data is retrieved from NCBI using E-
+search and E-summary, from NCBI E-Utilities API. REGO can: recommend papers based on
+user’s keywords; run queries; allow the user to save favourite papers; provide abstracts and
+produce full-text publications, if they have open access. REGO is also equipped to store user
+data information and preferences in the local application state using Redux, this ensures a
+more personalised user experience.
+
+## Features and functionality
 - User Authentication (Signup & Login)
 - Search for papers
 - Read papers
