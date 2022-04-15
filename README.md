@@ -1,7 +1,6 @@
-# ReGO
+# ReGO - Research that moves
 <p align="center">
  <img src="src/frontend/Rego/app/assets/images/rego.png">
-Research that moves
 </p>
 
 ### About
