@@ -43,3 +43,18 @@ more personalised user experience.
     <img width="200" style="margin: 20px" src="output/Screenshot_2022-04-15-11-09-39-81_a9a56b8cc64bdde91c17db58bee4351f.jpg">
     <img width="200" style="margin: 20px;" src="output/Screenshot_2022-04-15-11-10-35-86_a9a56b8cc64bdde91c17db58bee4351f.jpg">
 </div>
+
+### Project organization
+rego <br>
+- output:
+  - Contains the screen-captures of the rego app in use
+- scripts:
+  - Contains utility scripts for the project
+- src:
+  - Contains the source code of the application
+  - Subdivided into 2 directories (Frontend and Backend)
+  - The Frontend directory contains the user interface code
+  - The Backed directory contains the server code for the application
+- Workflow:
+  - Contains the workflow and implementation description of the project
+
