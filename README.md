@@ -37,3 +37,9 @@ more personalised user experience.
     <img width="200" style="margin: 10px"  src="output/Screenshot_2022-04-15-11-08-19-23_a9a56b8cc64bdde91c17db58bee4351f.jpg">
     <img width="200" style="margin: 10px" src="output/Screenshot_2022-04-15-11-08-47-02_a9a56b8cc64bdde91c17db58bee4351f.jpg">
 </div>
+
+<div align="center" style="display:flex">
+    <img width="200" style="margin: 10px" src="output/Screenshot_2022-04-15-11-11-33-70_a9a56b8cc64bdde91c17db58bee4351f.jpg">
+    <img width="200" style="margin: 10px" src="output/Screenshot_2022-04-15-11-09-39-81_a9a56b8cc64bdde91c17db58bee4351f.jpg">
+    <img width="200" style="margin: 10px;" src="output/Screenshot_2022-04-15-11-10-35-86_a9a56b8cc64bdde91c17db58bee4351f.jpg">
+</div>
