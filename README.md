@@ -45,16 +45,16 @@ more personalised user experience.
 </div>
 
 ### Project organization
-rego <br>
-- output:
+[rego](.) <br>
+- [output](./output):
   - Contains the screen-captures of the rego app in use
-- scripts:
+- [scripts](./scripts):
   - Contains utility scripts for the project
-- src:
+- [src](./src):
   - Contains the source code of the application
   - Subdivided into 2 directories (Frontend and Backend)
-  - The Frontend directory contains the user interface code
-  - The Backed directory contains the server code for the application
-- Workflow:
+  - The [Frontend](./src/frontend) directory contains the user interface code
+  - The [Backend](./src/backend) directory contains the server code for the application
+- [Workflow](./workflow):
   - Contains the workflow and implementation description of the project
 
