@@ -59,7 +59,7 @@ more personalised user experience.
   - Contains the workflow and implementation description of the project
 
 ### Meet the team
-1. [Wilson Mudaki]()
+1. [Wilson Mudaki](https://github.com/totodingi)
 - Affiliation:
   - Bioscience Research Center,Pwani University, P.O. Box 195-80108, Kilifi, Kenya
 - Roles/Contribution:
