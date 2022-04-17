@@ -66,11 +66,13 @@ npx react-native run-ios --variant=release # for production ready ios applicatio
 
 ### Project organization
 [rego](./README.md) <br>
-- [output](./output):
+- [Docs](./docs):
+  - Contains project documentation and wiki files 
+- [Output](./output):
   - Contains the screen-captures of the rego app in use
-- [scripts](./scripts):
+- [Scripts](./scripts):
   - Contains utility scripts for the project
-- [src](./src):
+- [Src](./src):
   - Contains the source code of the application
   - Subdivided into 2 directories (Frontend and Backend)
   - The [Frontend](./src/frontend) directory contains the user interface code
