@@ -31,6 +31,26 @@ more personalised user experience.
 4. [MongoDb](https://docs.mongodb.com/manual/) used as a Database of choice
 5. Research papers to be obtained using the NCBI’s [Entrez utils](https://www.ncbi.nlm.nih.gov/books/NBK25501/) API.
 
+### Availability 
+The packaged android version 1.0 of the application is available for download [here](https://install.appcenter.ms/users/totodingi/apps/rego/distribution_groups/beta%20testers).
+
+To package your own version of the application: 
+1. Set up a react native development environment using [this](https://reactnative.dev/docs/environment-setup#:~:text=Creating%20a%20new%20application) guide
+2. Clone the repository locally and navigate into the Rego directory in the frontend directory and run the following commands
+```shell
+cd ./src/frontend/Rego
+
+npm install 
+
+npx react-native run-android # for debug mode android application
+
+npx react-native run-ios  # for debug mode iOS application 
+
+npx react-native run-android --variant=release # for production ready android application 
+
+npx react-native run-ios --variant=release # for production ready ios application
+```
+
 ### ReGO in Action
 <div align="center"  style="display: flex">
     <img width="200" style="margin: 20px" src="output/Screenshot_2022-04-15-11-08-04-29_a9a56b8cc64bdde91c17db58bee4351f.jpg">
