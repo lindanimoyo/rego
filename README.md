@@ -4,7 +4,7 @@
 </p>
 
 ### About
-A Cross-platform Mobile Application for Reading Research Papers on the Go
+A Cross-platform Mobile Application to Read Research Articles on the Go
 
 ### Summary
 The availability of biomedical literature has increased in the last decade, PubMed holds about
